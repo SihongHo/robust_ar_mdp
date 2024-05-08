@@ -1,4 +1,4 @@
-from utility import *
+from alg.utility import *
 import os
 import pickle
 

@@ -1,5 +1,5 @@
-from utility import *
-from robust_alg import *
+from alg.utility import *
+from alg.robust_alg import *
 import pickle
 import os
 

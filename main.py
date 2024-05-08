@@ -1,9 +1,9 @@
-from inventory import *
-from robot import *
-from garnet import *
-from utility import *
-from robust_alg import *
-from non_robust_alg import *
+from env.inventory import *
+from env.robot import *
+from env.garnet import *
+from alg.utility import *
+from alg.robust_alg import *
+from alg.non_robust_alg import *
 import argparse
 import datetime
 import json
