@@ -44,7 +44,7 @@ def main():
         "machine": platform.machine(),
         "processor": platform.processor()
          }
-    with open(os.path.join(args.save_path, 'run_info.json'), 'w') as f:
+    with open(os.path.join(save_path, 'run_info.json'), 'w') as f:
         json.dump(run_info, f, indent=4)
 
     if args.env == 'garnet':
