@@ -29,13 +29,14 @@ def main():
 
     args = parser.parse_args()
 
-    # 检查路径是否存在，如果不存在，则创建
-    if not os.path.exists(args.save_path):
-        os.makedirs(args.save_path)
-    # Save the command line arguments and the current time
+    start_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    save_path = args.save_path + start_time + '/'
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
     run_info = {
         'args': vars(args),
-        'start_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'start_time': start_time,
         "system": platform.system(),
         "node_name": platform.node(),
         "release": platform.release(),
