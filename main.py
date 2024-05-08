@@ -14,11 +14,11 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser(description="Solve problems for different environments.")
-    parser.add_argument('--env', choices=['garnet', 'inventory', 'robot'], default='garnet', help='The problem to solve.')
+    parser.add_argument('--env', choices=['garnet', 'inventory', 'robot', 'garnet_instance'], default='garnet', help='The problem to solve.')
     parser.add_argument('--alg',choices=['robust-base', 'robust-our', 'non-robust'], default='robust-our')
     parser.add_argument('--save_path', type=str, default='./', help='save final results, e.g., exp1/')
     parser.add_argument('--warnings_stop', action='store_true', help='Stop execution on warnings')
-
+    parser.add_argument('--garnet_instance_path', type=str, default='envs/garnet_instance.pkl')
 
     parser.add_argument('--training_steps', type=int, default=50, help='Training steps (default: 50).')
     parser.add_argument('--S_n', type=int, default=3, help='Number of states (default: 3).')
@@ -53,6 +53,9 @@ def main():
         env = Inventory()
     elif args.env == 'robot':
         env = Robot()
+    elif args.env == 'garnet_instance':
+        with open(args.garnet_instance_path, 'rb') as file:
+            env = pickle.load(file)
     r, P, S_n, A_n = env.get_rewards(), env.get_transition_probabilities(), env.S_n, env.A_n
     print(r)
     print(P)
@@ -61,7 +64,6 @@ def main():
     training_steps = args.training_steps
     uncertainty = args.uncertainty
     alpha = args.alpha
-    save_path = args.save_path
 
     def warning_stop_run():
         warnings.filterwarnings('error')
