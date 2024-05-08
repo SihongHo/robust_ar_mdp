@@ -57,6 +57,7 @@ def main():
         with open(args.garnet_instance_path, 'rb') as file:
             env = pickle.load(file)
     r, P, S_n, A_n = env.get_rewards(), env.get_transition_probabilities(), env.S_n, env.A_n
+    print(args)
     print(r)
     print(P)
     pi = generate_random_policy(S_n, A_n)
