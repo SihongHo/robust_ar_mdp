@@ -28,6 +28,10 @@ def main():
     parser.add_argument('--max_iterations', type=int, default=1000, help='Maximum number of iterations (default: 1000).')
 
     args = parser.parse_args()
+
+    # 检查路径是否存在，如果不存在，则创建
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
     # Save the command line arguments and the current time
     run_info = {
         'args': vars(args),
